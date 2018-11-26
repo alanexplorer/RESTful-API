@@ -48,15 +48,16 @@ aparecerá a mesagem : Bem-vindo ao Servidor
 
 ## Funcionalidades do Servidor
 Na tabela abaixo listamos todas as funcionalidades do nosso servidor.
-| Operação | Comando             | Descrição                                                                    |
-|----------|---------------------|------------------------------------------------------------------------------|
-| GET      | /server             | Apresenta uma tela de Bem-vindo                                              |
-| GET      | /server/data        | Retorna todos os dados do banco                                              |
-| GET      | /server/data/id     | Retorna uma consulta onde id é o numero de identificação no banco de dados   |
-| GET      | /server/ano/codIBGE | Carrega os dados no banco e retorna a estatísticarna com valores estatísticos|
-| POST     | /server/data        | Preenche os dados manualmente e envia para o banco de dados                  |
-| PUT      | /server/id          | Atualiza uma consulta onde id é o numero de identificação no banco de dados  |
-| DELETE   | /server/id          | Deleta uma consulta no banco de dados                                        |
+
+ Operação | Comando             | Descrição                                                                    
+----------|---------------------|------------------------------------------------------------------------------
+ GET      | /server             | Apresenta uma tela de Bem-vindo                                              
+ GET      | /server/data        | Retorna todos os dados do banco                                              
+ GET      | /server/data/id     | Retorna uma consulta onde id é o numero de identificação no banco de dados   
+ GET      | /server/ano/codIBGE | Carrega os dados no banco e retorna a estatísticarna com valores estatísticos
+ POST     | /server/data        | Preenche os dados manualmente e envia para o banco de dados                  
+ PUT      | /server/id          | Atualiza uma consulta onde id é o numero de identificação no banco de dados  
+ DELETE   | /server/id          | Deleta uma consulta no banco de dados                                        
 
 ## Funcionalidade do Cliente
 
