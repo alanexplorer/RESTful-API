@@ -48,8 +48,8 @@ aparecerá a mesagem : Bem-vindo ao Servidor
 
 ## Funcionalidades do Servidor
 Na tabela abaixo listamos todas as funcionalidades do nosso servidor.
-|Operação                |Comando                         |Descrição                         |
-|----------------|-------------------------------|-----------------------------|
+|Operação|Comando|Descrição|
+|----------------|-------------------------------|---------------------------------------------------------------------------|
 |GET|`'/server'`   |Apresenta uma tela de Bem-vindo     |
 |GET|`/server/data`|Retorna todos os dados do banco            |
 |GET|`/server/data/id`|Retorna uma consulta onde id é o numero de indentificação no banco de dados|
