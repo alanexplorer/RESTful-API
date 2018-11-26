@@ -17,7 +17,7 @@ As funcionalidades da aplicação terão que usar dados do Portal da Transparên
 
 ## Ferramentas Utilizadas
 
-Servidor : PHP, Slim Framework, MySQL.
+Servidor : PHP, Slim Framework, MySQL.  
 Cliente: PHP, HTML 5, Bootstrap 4, PHPlot.
 
 ## Instalação
