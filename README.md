@@ -13,22 +13,7 @@ implementar uma Aplicação A baseada na arquitetura RESTful e que utilize as se
 As funcionalidades da aplicação terão que usar dados do Portal da Transparência do Governo Federal, através da sua API de dados: 
 [www.portaltransparencia.gov.br](http://www.portaltransparencia.gov.br/api-de-dados)
 
-```
-graph LR
-A[Cliente]--API-->B[Servidor]
-B--API-->C[Portal]
-B --JSON--> A
-C --JSON--> B
-```
-
-
-```
-graph TD;
-    A-->B;
-    A-->C;
-    B-->D;
-    C-->D;
-```
+![Diagrama](https://uploaddeimagens.com.br/images/001/746/210/full/RESTful_API.png?1543271562)
 
 ## Ferramentas Utilizadas
 
