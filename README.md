@@ -21,6 +21,15 @@ B --JSON--> A
 C --JSON--> B
 ```
 
+
+```
+graph TD;
+    A-->B;
+    A-->C;
+    B-->D;
+    C-->D;
+```
+
 ## Ferramentas Utilizadas
 
 Servidor : PHP, Slim Framework, MySQL.
