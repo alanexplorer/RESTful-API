@@ -13,7 +13,7 @@ $app->get('/', function () {
 
 $app->get('/data/:id','getDataID');
 $app->get('/data','getData');
-$app->get('/:codIBGE/:ano','getPortal');
+$app->get('/:ano/:codIBGE','getPortal');
 $app->post('/data','addData');
 $app->put('/data/:id','saveData');
 $app->delete('/data/:id','deleteData');
@@ -55,7 +55,7 @@ function getPortal($ano, $codIBGE){
     $statistic->setMediana($portal->mediana());
     $statistic->setMaximo($portal->maximo());
     $statistic->setMinimo($portal->minimo());
-    $statistic->setDesvio(0);
+    $statistic->setDesvio($portal->desvio());
 
     $statistic->add();
 

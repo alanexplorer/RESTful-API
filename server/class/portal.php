@@ -127,6 +127,26 @@ class Portal{
 
   }
 
+  public function desvio(){
+
+    $mean = (array_sum($this->periodo)/2);
+    $n = 12;
+    $sample = $this->periodo;
+
+    foreach ($sample as &$value) {
+      $value = pow(($value-$mean), 2);
+    }
+
+    $SumSample = array_sum($sample);
+
+    $variance = $SumSample/11;
+
+    $standardDeviation = sqrt($variance);
+
+    return $standardDeviation;
+
+  }
+
 
 }
  ?>
