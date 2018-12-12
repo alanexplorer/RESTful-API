@@ -10,7 +10,7 @@ implementar uma Aplicação A baseada na arquitetura RESTful e que utilize as se
 - POST
 - PUT
 - GET
-- DELETE
+- DELETE  
 As funcionalidades da aplicação terão que usar dados do Portal da Transparência do Governo Federal, através da sua API de dados: 
 [www.portaltransparencia.gov.br](http://www.portaltransparencia.gov.br/api-de-dados)
 
