@@ -56,6 +56,8 @@ function getPortal($ano, $codIBGE){
     $statistic->setMaximo($portal->maximo());
     $statistic->setMinimo($portal->minimo());
     $statistic->setDesvio($portal->desvio());
+    $statistic->setQ1($portal->q1());
+    $statistic->setQ3($portal->q3());
 
     $statistic->add();
 
@@ -65,39 +67,44 @@ function getPortal($ano, $codIBGE){
 
 function addData(){
 
-  $statistic = new Statistic();
   $request = \Slim\Slim::getInstance()->request();
-  $data = json_decode($request->getBody());
+  $data = json_decode($request->getBody(), true);
+  $statistic = new Statistic();
 
-  $statistic->setAno($data->AnoReferencia);
-  $statistic->setCod($data->CodigoMunicipio);
-  $statistic->setMedia($data->Media);
-  $statistic->setMediana($data->Mediana);
-  $statistic->setMaximo($data->Maximo);
-  $statistic->setMinimo($data->Minimo);
-  $statistic->setDesvio($data->Desvio);
+  $statistic->setAno($data['AnoReferencia']);
+  $statistic->setCod($data['CodigoMunicipio']);
+  $statistic->setPer($data['idPeriodo']);
+  $statistic->setMedia($data['Media']);
+  $statistic->setMediana($data['Mediana']);
+  $statistic->setMaximo($data['Maximo']);
+  $statistic->setMinimo($data['Minimo']);
+  $statistic->setDesvio($data['Desvio']);
+  $statistic->setQ1($data['Q1']);
+  $statistic->setQ3($data['Q3']);
 
   $statistic->add();
+  return $data;
+
+
 }
 
 function saveData($id){
 
-  $statistic = new Statistic();
   $request = \Slim\Slim::getInstance()->request();
-  $data = json_decode($request->getBody());
+  $data = json_decode($request->getBody(), true);
+  $statistic = new Statistic();
 
-  $statistic->setAno($data->AnoReferencia);
-  $statistic->setCod($data->CodigoMunicipio);
-  $statistic->setPer($data->idPeriodo);
-  $statistic->setMedia($data->Media);
-  $statistic->setMediana($data->Mediana);
-  $statistic->setMaximo($data->Maximo);
-  $statistic->setMinimo($data->Minimo);
-  $statistic->setDesvio($data->Desvio);
-
+  $statistic->setMedia($data['Media']);
+  $statistic->setMediana($data['Mediana']);
+  $statistic->setMaximo($data['Maximo']);
+  $statistic->setMinimo($data['Minimo']);
+  $statistic->setDesvio($data['Desvio']);
+  $statistic->setQ1($data['Q1']);
+  $statistic->setQ3($data['Q3']);
+  
   $statistic->update($id);
-  getDataID($id);
 
+  getDataID($id);
 }
 
 function deleteData($id){

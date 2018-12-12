@@ -12,6 +12,8 @@ class Statistic{
 	private $Maximo;
 	private $Minimo;
 	private $Desvio;
+	private $Q1;
+	private $Q3;
 
 	public function getConn(){
 
@@ -82,6 +84,22 @@ class Statistic{
 		$this->Desvio=$value;
 	}
 
+	public function getQ1(){
+		return $this->Q1;
+	}
+
+	public function setQ1($value){
+		$this->Q1=$value;
+	}
+
+	public function getQ3(){
+		return $this->Q3;
+	}
+
+	public function setQ3($value){
+		$this->Q3=$value;
+	}
+
 	public function __construct()
 	{
 		$database = new Database();
@@ -131,8 +149,8 @@ class Statistic{
 	public function add(){
 		try
 		{
-			$stmt = $this->conn->prepare("INSERT INTO Estatistica(AnoReferencia, CodigoMunicipio, idPeriodo, Media, Mediana, Maximo, Minimo, Desvio)
-			VALUES (:AnoRef,:CodMun, :Per, :Media,:Mediana,:Maximo,:Minimo,:Desvio)");
+			$stmt = $this->conn->prepare("INSERT INTO `Estatistica`(`AnoReferencia`, `CodigoMunicipio`, `idPeriodo`, `Media`, `Mediana`, `Maximo`, `Minimo`, `Desvio`, `Q1`, `Q3`)
+			VALUES (:AnoRef,:CodMun, :Per, :Media,:Mediana,:Maximo,:Minimo,:Desvio, :Q1, :Q3)");
 
 
 			$stmt->bindValue(":AnoRef", $this->getAno());
@@ -143,6 +161,8 @@ class Statistic{
 			$stmt->bindValue(":Maximo", $this->getMaximo());
 			$stmt->bindValue(":Minimo", $this->getMinimo());
 			$stmt->bindValue(":Desvio", $this->getDesvio());
+			$stmt->bindValue(":Q1", $this->getQ1());
+			$stmt->bindValue(":Q3", $this->getQ3());
 
 			$stmt->execute();
 
@@ -156,13 +176,15 @@ class Statistic{
 
 		try
 		{
-				$stmt = $this->conn->prepare("UPDATE Estatistica SET Media=:Media, Mediana=:Mediana, Maximo=:Maximo, Minimo=:Minimo, Desvio=:Desvio WHERE Id=:id");
+				$stmt = $this->conn->prepare("UPDATE Estatistica SET Media=:Media, Mediana=:Mediana, Maximo=:Maximo, Minimo=:Minimo, Desvio=:Desvio, Q1=:Q1, Q3=:Q3 WHERE Id=:id");
 				$stmt->bindParam("id",$id);
 				$stmt->bindValue(":Media",$this->getMedia());
 				$stmt->bindValue(":Mediana",$this->getMediana());
 				$stmt->bindValue(":Maximo",$this->getMaximo());
 				$stmt->bindValue(":Minimo",$this->getMinimo());
 				$stmt->bindValue(":Desvio",$this->getDesvio());
+				$stmt->bindValue(":Q1",$this->getQ1());
+				$stmt->bindValue(":Q3",$this->getQ3());
 				$stmt->execute();
 
 		}

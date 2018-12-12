@@ -147,6 +147,22 @@ class Portal{
 
   }
 
+  public function q1(){
 
+    sort($this->periodo);
+    $quartis = $this->periodo[2];
+
+    return $quartis;
+
+  }
+
+  public function q3(){
+
+    sort($this->periodo);
+    $quartis = $this->periodo[6];
+
+    return $quartis;
+
+  }
 }
  ?>

@@ -1,23 +1,83 @@
 <?php
+  require_once 'phplot/phplot.php';
 
   $json = "";
 
   if(isset($_POST['btn-signup'])){
 
-    $adress = $_POST['txt_url'];
+    $url = $_POST['txt_url'];
+    $arr = $_POST['txt_set'];
 
     switch ($_POST['txt_metodo']) {
       case 1:
-          $json = json_decode(file_get_contents($adress,true));
+          $ch = curl_init();
+          curl_setopt( $ch, CURLOPT_URL, $url);
+          curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true);
+          $json = curl_exec($ch);
+          curl_close($ch);
           break;
       case 2:
-          echo $json;
+          $ch = curl_init($url);
+          curl_setopt( $ch, CURLOPT_POSTFIELDS, $arr );
+          curl_setopt( $ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+          curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
+          $json = curl_exec($ch);
+          curl_close($ch);
+          $json = "Requisição POST enviado para o Bando de Dados\n\n".print_r(json_decode($arr), true);
           break;
       case 3:
-          echo $json;
+          $ch = curl_init($url);
+          curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+          curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
+          curl_setopt($ch, CURLOPT_POSTFIELDS, $arr);
+          $response = curl_exec($ch);
+          curl_close($ch);
+
+          if($response){
+            $json = "Requisição PUT enviado, o banco de dados foi atualizado";
+          }
           break;
       case 4:
-          echo $json;
+          $ch = curl_init();
+          curl_setopt($ch, CURLOPT_URL, $url);
+          curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
+          curl_exec($ch);
+          $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+          curl_close($ch);
+          $json = "Consulta Deleta do Bando de Dados";
+          break;
+      case 5:
+
+          $ch = curl_init();
+          curl_setopt( $ch, CURLOPT_URL, $url);
+          curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true);
+          $file = curl_exec($ch);
+          $json = json_decode($file, true);
+          curl_close($ch);
+          $media = $json['Media'];
+          $mediana = $json['Mediana'];
+          $maximo = $json['Maximo'];
+          $minimo = $json['Minimo'];
+          $desvio = $json['Desvio'];
+          $q1 = $json['Q1'];
+          $q3 = $json['Q3'];
+
+
+          $data = array(array('', 3,  $minimo, $q1, $media, $q3, $maximo));
+
+          $plot = new PHPlot(400, 600);
+          $plot->SetTitle('Consulta');
+          $plot->SetDataType('data-data');
+          $plot->SetDataValues($data);
+          $plot->SetPlotType('boxes');
+          $plot->SetImageBorderType('plain');
+          $plot->SetLineStyles('dashed');
+          $plot->SetLineWidths(array(3, 3, 1));
+          $plot->SetDataColors(array('blue', 'blue', 'red', 'blue'));
+          $plot->SetPointShapes('star');
+          $plot->DrawGraph();
+
+
           break;
       }
   }
@@ -56,6 +116,7 @@
                                 <option value="2">POST</option>
                                 <option value="3">PUT</option>
                                 <option value="4">DELETE</option>
+                                <option value="5">BOXPLOT</option>
                               </select>
                            </div>
                            <div class="col-sm-8 mb-3">
@@ -72,10 +133,10 @@
   						 <!-- form line 2 -->
                        <div class="form-row">
   											 <div class="col-sm-6 mb-3">
-  	                        <textarea class="form-control rounded-0" name="txt_set" rows="15"></textarea>
+  	                        <textarea class="form-control rounded-0" name="txt_set" rows="15" placeholder=""></textarea>
   	                     </div>
                          <div class="col-sm-6 mb-3">
-                            <textarea class="form-control rounded-0" id="txt_get" rows="15" disabled><?php print_r($json); ?></textarea>
+                            <textarea class="form-control rounded-0" id="txt_get" rows="15" disabled><?php echo $json; ?></textarea>
                          </div>
                      </div>
                <!-- fim form line 2 -->

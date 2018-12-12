@@ -1,3 +1,4 @@
+
 # RESTful API
 
 Projeto da disciplina **Sistemas Distribuídos** do Instituto de Computação - Universidade Federal de Alagoas. Prof. André Lage.
@@ -49,14 +50,70 @@ Na tabela abaixo listamos todas as funcionalidades do nosso servidor.
  GET      | /server             | Apresenta uma tela de Bem-vindo                                              
  GET      | /server/data        | Retorna todos os dados do banco                                              
  GET      | /server/data/id     | Retorna uma consulta onde id é o numero de identificação no banco de dados   
- GET      | /server/ano/codIBGE | Carrega os dados no banco e retorna a estatísticarna com valores estatísticos
+ GET      | /server/ano/codIBGE | Carrega os dados no banco e retorna com os valores estatísticos
  POST     | /server/data        | Preenche os dados manualmente e envia para o banco de dados                  
  PUT      | /server/id          | Atualiza uma consulta onde id é o numero de identificação no banco de dados  
- DELETE   | /server/id          | Deleta uma consulta no banco de dados                                        
+ DELETE   | /server/data/id          | Deleta uma consulta no banco de dados                                        
 
 ## Funcionalidade do Cliente
 
 O Cliente possuí uma interface, aonde podemos utilizar todos os recursos do servidor com a opção de gerar gráficos dos dados.
+
+### Método GET
+
+1. Escolha o método GET
+2. Entre com a URL da requisição (ver tabela acima)
+3. No text-area aparecerá o JSON resposta:
+
+### Método PUT
+
+1. Escolha o método PUT
+2. Entre com a URL (http://localhost/server/data)
+3. No text-area editável entre com o JSON, exemplo:
+~~~
+{
+    "AnoReferencia": "2020",
+    "CodigoMunicipio": "2704302",
+    "idPeriodo": "1",
+    "Media": "100",
+    "Mediana": "100",
+    "Maximo": "100",
+    "Minimo": "100",
+    "Desvio": "100",
+    "Q1": "100",
+    "Q3": "200"
+}
+~~~
+### Método PUT
+
+1. Escolha o método PUT
+2. Entre com a URL da requisição (ver tabela acima)
+3. No text-area editável entre com o JSON, exemplo:
+~~~
+{
+    "Media": "100",
+    "Mediana": "100",
+    "Maximo": "100",
+    "Minimo": "100",
+    "Desvio": "100",
+    "Q1": "100",
+    "Q3": "200"
+}
+~~~
+### Método DELETE
+
+1. Escolha o método DELETE
+2. Entre com a URL da requisição o com o id que deseja pagar
+
+### BOXPLOT
+Adicionamos uma opção para gerar um boxplot dos dados que estão no nosso bando de dados, ele funciona através de um método GET.
+
+1. Escolha a opção BOXPLOT
+2. Entre com a URL da requisição (GET ID, exemplor: (http://localhost/server/data/1 )
+3. Abrirá uma nova aba com o boxplot
+
+## Observações
+Por ser um projeto para testar e se familiarizar com a aplicação RESTful, não foi implementada nenhum tratamento de erros, qualquer dúvida entre em contatos: aps@ic.ufal.br
 
 > _“As tecnologias mais profundas e duradouras são aquelas que desaparecem. Elas dissipam-se nas coisas do dia a dia até tornarem-se indistingüíveis.”_  
 Mark Weiser – 1952 a 1999 – Cientista Chefe do XEROX PARC
