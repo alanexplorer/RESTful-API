@@ -65,6 +65,10 @@ O Cliente possuí uma interface, aonde podemos utilizar todos os recursos do ser
 2. Entre com a URL da requisição (ver tabela acima)
 3. No text-area aparecerá o JSON resposta:
 
+#### Observação
+
+Estamos usando o método GET(/server/ano/codIBGE) para carregar o banco com os dados do Portal Transparência, os dados demoram um pouco para serem carregados, pois faz 12 consultas durante o ano solicitado que se refere a cada mês.
+
 ### Método PUT
 
 1. Escolha o método PUT
